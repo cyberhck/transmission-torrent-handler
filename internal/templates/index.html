@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    Allow this page to handle all magnet links by clicking
+    <button id="register_magnet_link_button">here</button>
+</div>
+</body>
+<script>
+    const registerHandler = () => {
+        navigator.registerProtocolHandler("magnet", "{{.SelfHost}}:{{.SelfPort}}/open?url=%s", "Allow this page to handle magnet type")
+    };
+    document.getElementById("register_magnet_link_button").addEventListener("click", registerHandler)
+</script>
+</html>

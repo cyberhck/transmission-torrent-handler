@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    window.addEventListener("load", async () => {
+        const url = new URL(window.location);
+        const magnetURL = url.searchParams.get("url")
+        const shouldStart = confirm(`start this torrent: ${magnetURL}`)
+        if (!shouldStart) {
+            console.log("skipping")
+            return;
+        }
+        const response = await fetch("/start-torrent", {method: "POST", body: JSON.stringify({url: magnetURL})})
+        if (response.status !== 200) {
+            alert("something wrong went while starting torrent, please check")
+            return;
+        }
+        window.location = "{{ .TransmissionPublicURL }}"
+    })
+  </script>
+</head>
+<body>
+</body>
+</html>
