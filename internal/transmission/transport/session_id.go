@@ -16,7 +16,7 @@ func (s *SessionID) RoundTrip(request *http.Request) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	if response.StatusCode != 419 {
+	if response.StatusCode != 409 {
 		return response, nil
 	}
 	// get the session id from the response and continue request

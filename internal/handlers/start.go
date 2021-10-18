@@ -23,6 +23,7 @@ func Start(client *transmission.Client) http.Handler {
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte("internal error: " + err.Error()))
+			return
 		}
 		w.WriteHeader(http.StatusOK)
 	})

@@ -36,8 +36,8 @@ type AddRequest struct {
 
 func (c Client) AddTorrent(url string) error {
 	path := fmt.Sprintf("%s/transmission/rpc", c.endpoint)
-	buffer := &bytes.Buffer{}
-	err := json.NewEncoder(buffer).Encode(&AddRequest{
+	buffer := new(bytes.Buffer)
+	err := json.NewEncoder(buffer).Encode(AddRequest{
 		Method:    "torrent-add",
 		Arguments: Arguments{Filename: url},
 	})
