@@ -17,5 +17,5 @@ func main() {
 	router.Handle("/open", handlers.Open(cfg)).Methods("GET")
 	router.Handle("/start-torrent", handlers.Start(client)).Methods("POST")
 	fmt.Printf("starting on %d", cfg.SelfPort)
-	panic(http.ListenAndServe(fmt.Sprintf(":%d", cfg.SelfPort), router))
+	panic(http.ListenAndServeTLS(fmt.Sprintf(":%d", cfg.SelfPort), "certs/nas.crt", "certs/nas.key", router))
 }
