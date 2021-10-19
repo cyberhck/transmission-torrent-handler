@@ -1,0 +1,11 @@
+[Unit]
+Description=transmission torrent handler service
+
+[Service]
+User=pi
+WorkingDirectory=/home/pi/transmission-torrent-handler/
+ExecStart=/home/pi/transmission-torrent-handler/server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
