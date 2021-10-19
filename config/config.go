@@ -10,7 +10,7 @@ type Config struct {
 
 type Transmission struct {
 	PublicURL string `json:"public_url" default:"http://localhost:9091" env:"CONFIG__TRANSMISSION__PUBLIC_URL" required:"true"`
-	Endpoint string `json:"endpoint" default:"transmission:9091" env:"CONFIG__TRANSMISSION__ENDPOINT" required:"true"`
+	Endpoint string `json:"endpoint" default:"http://localhost:9091" env:"CONFIG__TRANSMISSION__ENDPOINT" required:"true"`
 }
 
 func MustLoadConfig() *Config {

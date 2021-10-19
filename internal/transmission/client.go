@@ -16,7 +16,7 @@ type Client struct {
 
 func New(endpoint string) *Client {
 	httpClient := http.Client{
-		Timeout:   time.Second * 3,
+		Timeout:   time.Second * 15,
 		Transport: &transport.SessionID{InnerTransport: http.DefaultTransport},
 	}
 	return &Client{
@@ -36,8 +36,8 @@ type AddRequest struct {
 
 func (c Client) AddTorrent(url string) error {
 	path := fmt.Sprintf("%s/transmission/rpc", c.endpoint)
-	buffer := new(bytes.Buffer)
-	err := json.NewEncoder(buffer).Encode(AddRequest{
+	buffer := &bytes.Buffer{}
+	err := json.NewEncoder(buffer).Encode(&AddRequest{
 		Method:    "torrent-add",
 		Arguments: Arguments{Filename: url},
 	})
